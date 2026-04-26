@@ -25,6 +25,6 @@ Werkzeug==3.1.8
 tensorflow==2.15.0
 opencv-python-headless
 scipy
-webcolors
+webcolors==1.11.1
 matplotlib
 Pillow
