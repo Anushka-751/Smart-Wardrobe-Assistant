@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import os, random, sqlite3
+from dotenv import load_dotenv
+load_dotenv()
 from recognition_module import single_classification  # your ML model
 from weather_service import WeatherService  # NEW: Import weather service
 
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key_here_change_in_production"
+app.secret_key = os.environ.get("SECRET_KEY", "dev-fallback-key")
 
 
 # ==========================================
@@ -24,6 +26,15 @@ except Exception as e:
 # ==========================================
 BASE_UPLOAD_FOLDER = os.path.join("static", "uploads")
 os.makedirs(BASE_UPLOAD_FOLDER, exist_ok=True)
+
+import cloudinary
+import cloudinary.uploader
+
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get("CLOUDINARY_API_SECRET")
+)
 
 
 # ==========================================
@@ -196,8 +207,18 @@ def upload():
     os.makedirs(user_folder, exist_ok=True)
 
     file = request.files["file"]
+    
+    # Save locally as backup for ML classification
     filepath = os.path.join(user_folder, file.filename)
     file.save(filepath)
+    
+    # Also upload to Cloudinary for permanent storage
+    try:
+        upload_result = cloudinary.uploader.upload(filepath)
+        image_url = upload_result['secure_url']
+    except Exception as e:
+        print(f"Cloudinary upload failed: {e}")
+        image_url = f"/static/uploads/{user_id}/{file.filename}"
 
     # Use ML model to classify clothing
     subtype, info_str, details = single_classification(filepath)
@@ -213,12 +234,12 @@ def upload():
     conn.execute("""
         INSERT INTO clothes (user_id, file_path, subtype, color, season, occasion, wear_count) 
         VALUES (?, ?, ?, ?, ?, ?, 0)
-    """, (user_id, filepath, subtype, details[2], season, occasion))
+    """, (user_id, image_url, subtype, details[2], season, occasion))
     conn.commit()
     conn.close()
 
     return jsonify({
-        "file_url": f"/static/uploads/{user_id}/{file.filename}",
+        "file_url": image_url,
         "subtype": subtype,
         "season": season,
         "occasion": occasion,
@@ -677,4 +698,4 @@ def outfit_history():
 
 
 if __name__=="__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)

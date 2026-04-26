@@ -1,41 +1,67 @@
 #for modeling
 from tensorflow.keras.preprocessing import image
-from tensorflow.keras.preprocessing.image import ImageDataGenerator 
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.preprocessing import image
 import random
 
 #for read and show images
 import matplotlib.pyplot as plt
-import cv2                                                          
+import cv2
 import matplotlib.image as mpimg
 
 #for save and load models
 import tensorflow as tf
-from tensorflow import keras                                        
+from tensorflow import keras
 
 import numpy as np
 
 #for color classification
-import colorsys                                                     
+import colorsys
 import PIL.Image as Image
 
 from scipy.spatial import KDTree
 from webcolors import (
-   CSS3_HEX_TO_NAMES,
+    CSS3_HEX_TO_NAMES,
     hex_to_rgb
 )
 
-# Import os for dynamic path handling
 import os
+import gdown
 
-# Get the base directory of the project (parent of 'py' folder)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODELS_DIR = os.path.join(BASE_DIR, 'models')
 
-# load pre-trained models using relative paths
-sub_model = tf.keras.models.load_model(os.path.join(BASE_DIR, 'models', 'model_sub'))
-top_model = tf.keras.models.load_model(os.path.join(BASE_DIR, 'models', 'model_top'))
-bottom_model = tf.keras.models.load_model(os.path.join(BASE_DIR, 'models', 'model_bottom'))
-foot_model = tf.keras.models.load_model(os.path.join(BASE_DIR, 'models', 'model_shoes'))
+# Google Drive folder IDs
+DRIVE_IDS = {
+    'model_top':    '1nFFBkqP48KlPwYtNBrUQ7dF-CKZbYBbK',
+    'model_sub':    '1q287fBHuVqrkrPMGPV685xiy4co3fFgN',
+    'model_shoes':  '16CLt4dMTorEaOTxnZAt46O8CnvdPU6JB',
+    'model_bottom': '1-1jRTJrLSIaHxvDjkCCFnjrlt57Yfz3I',
+}
+
+def download_models_if_missing():
+    """Download models from Google Drive if not present (for Render deployment)"""
+    os.makedirs(MODELS_DIR, exist_ok=True)
+    for model_name, folder_id in DRIVE_IDS.items():
+        model_path = os.path.join(MODELS_DIR, model_name)
+        # Check if model already exists and has files inside
+        if not os.path.exists(model_path) or not os.listdir(model_path):
+            print(f"⬇️ Downloading {model_name} from Google Drive...")
+            os.makedirs(model_path, exist_ok=True)
+            url = f"https://drive.google.com/drive/folders/{folder_id}"
+            gdown.download_folder(url, output=model_path, quiet=False, use_cookies=False)
+            print(f"✅ {model_name} downloaded successfully")
+        else:
+            print(f"✅ {model_name} already exists, skipping download")
+
+# Run download check on startup
+download_models_if_missing()
+
+# load pre-trained models
+sub_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_sub', 'model_sub'))
+top_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_top', 'model_top'))
+bottom_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_bottom', 'model_bottom'))
+foot_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_shoes', 'model_shoes'))
 
 # all output possibilities of the model for subsequent matching
 sub_list = ["bottom","foot","top"]
