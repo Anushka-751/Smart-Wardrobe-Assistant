@@ -1,5 +1,5 @@
 
-# 👗 **SMART WARDROBE ASSISTANT — AI-POWERED OUTFIT RECOMMENDER**
+#  **SMART WARDROBE ASSISTANT — AI-POWERED OUTFIT RECOMMENDER**
 
 An **AI-powered Smart Wardrobe System** built using **Python, Flask, and Machine Learning (CNN)** that digitizes your wardrobe, classifies clothing using image recognition, and recommends the perfect outfit based on **occasion, weather, personal preferences, and usage frequency**.
 
@@ -7,7 +7,7 @@ This project functions as a **personal AI stylist**, helping users simplify outf
 
 ---
 
-## 🌟 **INTRODUCTION**
+##  **INTRODUCTION**
 
 Choosing an outfit can be surprisingly stressful due to the overwhelming number of choices. The Smart Wardrobe Assistant solves this by:
 
@@ -20,7 +20,7 @@ It analyzes **color coordination, category matching, seasonal suitability**, and
 
 ---
 
-## 🚩 **PROBLEM STATEMENT**
+##  **PROBLEM STATEMENT**
 
 People struggle daily with:
 
@@ -34,18 +34,18 @@ This smart system provides **AI-powered outfit selection**, reducing stress and 
 
 ---
 
-## 🧠 **ML & AI FEATURES IMPLEMENTED**
+##  **ML & AI FEATURES IMPLEMENTED**
 
 This version of the Smart Wardrobe Assistant includes:
 
-### 🤖 **AI Clothing Classification Using CNN**
+###  **AI Clothing Classification Using CNN**
 
 * Predicts **top / bottom / footwear**
 * Predicts **occasion category** (formal / casual / party / ethnic)
 * Predicts **color & pattern**
 * Predicts **subtype** (t-shirt, shirt, kurti, jeans, skirt, shoes, etc.)
 
-### 🎯 **AI-Powered Recommendations**
+###  **AI-Powered Recommendations**
 
 * Suggests outfits based on:
 
@@ -54,7 +54,7 @@ This version of the Smart Wardrobe Assistant includes:
   * Color compatibility
   * Balanced usage (least worn items suggested first)
 
-### 🔄 **Wear Count Tracking**
+###  **Wear Count Tracking**
 
 * Tracks how many times each item was worn
 * Recommender prioritizes underused items
@@ -62,7 +62,7 @@ This version of the Smart Wardrobe Assistant includes:
 
 ---
 
-## 🧥 **SMART WARDROBE MANAGEMENT**
+##  **SMART WARDROBE MANAGEMENT**
 
 Users can:
 
@@ -75,7 +75,7 @@ Users can:
 
 ---
 
-## ☁️ **WEATHER-INTEGRATED RECOMMENDATIONS**
+##  **WEATHER-INTEGRATED RECOMMENDATIONS**
 
 System fetches real-time weather and suggests:
 
@@ -87,7 +87,7 @@ System fetches real-time weather and suggests:
 
 ---
 
-## 🔐 **AUTHENTICATION & USER SYSTEM**
+##  **AUTHENTICATION & USER SYSTEM**
 
 * User registration & login
 * Session-based authentication
@@ -96,7 +96,7 @@ System fetches real-time weather and suggests:
 
 ---
 
-# ⚙️ **TECH STACK USED**
+#  **TECH STACK USED**
 
 | Component            | Technology                     |
 | -------------------- | ------------------------------ |
@@ -110,7 +110,7 @@ System fetches real-time weather and suggests:
 
 ---
 
-# 📚 **METHODOLOGY**
+#  **METHODOLOGY**
 
 1. **Requirement analysis**
 2. **Data collection** (user-uploaded clothing images)
@@ -125,7 +125,7 @@ System fetches real-time weather and suggests:
 
 ---
 
-# 🗂️ **PROJECT STRUCTURE**
+#  **PROJECT STRUCTURE**
 
 ```
 SMART-WARDROBE-ASSISTANT/
@@ -185,16 +185,16 @@ SMART-WARDROBE-ASSISTANT/
 <img width="1920" height="1140" alt="image" src="https://github.com/user-attachments/assets/b6413af4-29a3-464c-9869-11fe55ce0541" />
 
 
-# 🚀 **HOW TO RUN THE PROJECT**
+#  **HOW TO RUN THE PROJECT**
 
-### **1️⃣ Clone Repo**
+### **1️ Clone Repo**
 
 ```
 git clone https://github.com/prajnashreekulal/SMART-WARDROBE-ASSISTANT-AI-POWERED-OUTFIT-RECOMMENDER.git
 cd SMART-WARDROBE-ASSISTANT-AI-POWERED-OUTFIT-RECOMMENDER
 ```
 
-### **2️⃣ Create virtual environment**
+### **2️ Create virtual environment**
 
 ```
 python -m venv venv
@@ -202,19 +202,19 @@ venv\Scripts\activate      # Windows
 source venv/bin/activate  # Mac/Linux
 ```
 
-### **3️⃣ Install dependencies**
+### **3️ Install dependencies**
 
 ```
 pip install -r requirements.txt
 ```
 
-### **4️⃣ Initialize database**
+### **4️ Initialize database**
 
 ```
 python db_setup.py
 ```
 
-### **5️⃣ Run Flask**
+### **5️ Run Flask**
 
 ```
 python app.py
@@ -222,11 +222,11 @@ python app.py
 
 ### Open in browser:
 
-👉 [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+ [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 ---
 
-# 📊 **OUTCOMES**
+#  **OUTCOMES**
 
 * Saves time picking clothes
 * Improves fashion confidence
@@ -237,7 +237,7 @@ python app.py
 
 ---
 
-# 🔮 **FUTURE ENHANCEMENTS**
+#  **FUTURE ENHANCEMENTS**
 
 * Virtual Try-On using GAN
 * Advanced color-matching AI
@@ -248,7 +248,7 @@ python app.py
 
 ---
 
-# 🧑‍🏫 **TEAM & GUIDE**
+#  **TEAM & GUIDE**
 
 * **Anushka (4MW22CS027)**@
 * **Gowrika (4MW22CS059)**
@@ -262,7 +262,7 @@ Dept. of CSE, SMVITM, Bantakal
 
 ---
 
-# 🙏 **ACKNOWLEDGEMENT**
+#  **ACKNOWLEDGEMENT**
 
 We thank our guide and institution for continuous support and encouragement throughout the completion of this major project.
 
