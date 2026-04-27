@@ -58,10 +58,21 @@ def download_models_if_missing():
 download_models_if_missing()
 
 # load pre-trained models
-sub_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_sub', 'model_sub'))
-top_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_top', 'model_top'))
-bottom_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_bottom', 'model_bottom'))
-foot_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_shoes', 'model_shoes'))
+# Lazy load models - only load when first needed
+sub_model = None
+top_model = None
+bottom_model = None
+foot_model = None
+
+def load_models():
+    global sub_model, top_model, bottom_model, foot_model
+    if sub_model is None:
+        print("⏳ Loading ML models...")
+        sub_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_sub', 'model_sub'))
+        top_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_top', 'model_top'))
+        bottom_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_bottom', 'model_bottom'))
+        foot_model = tf.keras.models.load_model(os.path.join(MODELS_DIR, 'model_shoes', 'model_shoes'))
+        print("✅ All models loaded!")
 
 # all output possibilities of the model for subsequent matching
 sub_list = ["bottom","foot","top"]
@@ -176,7 +187,7 @@ def single_classification(single_path):
                                      info(a string having all info of a clothes), 
                                      res(a list having all info of a clothes)
     """
-    
+    load_models()
     # Our model only applies to dataframes. 
     # Therefore, in order to enable the model to predict a single picture, 
     # we turn this picture into a dataframe with only one row.
