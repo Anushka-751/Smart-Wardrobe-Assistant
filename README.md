@@ -222,7 +222,7 @@ python app.py
 
 ### Open in browser:
 
- [(https://smart-wardrobe-assistant-buo0.onrender.com)]((https://smart-wardrobe-assistant-buo0.onrender.com))
+ [https://smart-wardrobe-assistant-buo0.onrender.com]((https://smart-wardrobe-assistant-buo0.onrender.com))
 
 ---
 
